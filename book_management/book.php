@@ -6,12 +6,12 @@ include('db_conn.php');
 $id = $_SESSION['id'];
 
 if (isset($_POST['read'])) {
-  $bookImg = $_POST['bookImg'];
-  $title = $_POST['title'];
-  $author = $_POST['author'];
-  $url = $_POST['url'];
-  $publisher = $_POST['publisher'];
-  $bookIsbn = $_POST['bookIsbn'];
+  $bookImg = mysqli_real_escape_string($conn,$_POST['bookImg']);
+  $title = mysqli_real_escape_string($conn,$_POST['title']);
+  $author = mysqli_real_escape_string($conn,$_POST['author']);
+  $url = mysqli_real_escape_string($conn,$_POST['url']);
+  $publisher = mysqli_real_escape_string($conn,$_POST['publisher']);
+  $bookIsbn = mysqli_real_escape_string($conn,$_POST['bookIsbn']);
 
   $check = "SELECT * from myinventry where userId = '$id' and bookIsbn = '$bookIsbn'";
   $resp = mysqli_query($conn,$check);
@@ -85,7 +85,7 @@ if (isset($_POST['read'])) {
     <header class="header_section">
       <div class="container">
         <nav class="navbar navbar-expand-lg custom_nav-container ">
-          <a class="navbar-brand" href="index.html">
+          <a class="navbar-brand" href="dashboard.php">
             <img src="images/logo.png" alt="">
             <span>
               Book Inventary Management
